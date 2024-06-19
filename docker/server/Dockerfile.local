@@ -1,0 +1,17 @@
+FROM alpine 
+RUN apk --update --no-cache add tar && rm -rf /var/cache/apk/*
+RUN apk add --no-cache curl
+
+WORKDIR /bin
+
+RUN wget -O .caddy https://github.com/caddyserver/caddy/releases/download/v2.8.4/caddy_2.8.4_linux_amd64.tar.gz
+RUN tar -xzvf .caddy
+RUN chmod +x caddy
+
+COPY ./docker/server/Caddyfile.local Caddyfile
+
+COPY ./client/build /client
+
+EXPOSE 80 443
+
+CMD ["./caddy", "run"]

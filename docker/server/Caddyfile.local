@@ -1,0 +1,24 @@
+{
+  auto_https disable_redirects
+}
+
+caretaker.local.com:80, caretaker.local.com, host.docker.internal:80 {
+  tls internal
+
+
+  route {
+    header * -Server
+    encode * gzip 
+
+    header {
+      Cache-Control no-cache
+    }
+
+    redir /admin /_/
+
+    reverse_proxy /api/* host.docker.internal:3028
+    reverse_proxy /_/* host.docker.internal:3028
+
+    reverse_proxy host.docker.internal:3027
+  }
+}

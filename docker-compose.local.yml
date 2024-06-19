@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  server:
+    container_name: caretaker-server
+    build:
+      context: ./
+      dockerfile: ./docker/server/Dockerfile.local
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./.certs:/root/.local/share/caddy/pki/authorities/local
+      - ./client/build:/client
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
