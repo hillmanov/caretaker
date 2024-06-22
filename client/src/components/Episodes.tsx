@@ -71,7 +71,7 @@ const Episode = ({ episode }: { episode: EpisodeResponse }) => {
         </div>
       </div>
 
-      <div className={cn("rounded-b-xl bg-gray-100 p-4 text-xs text-gray-600 shadow", { "text-sky-600": !episode.end, "text-green-700": episode.end })}>
+      <div className={cn("rounded-b-xl bg-gray-100 p-4 text-xs text-gray-600 shadow", { "text-red-700": !episode.end, "text-green-700": episode.end })}>
         <div>{prettyDate(episode.start)} - {episode.end ? prettyDate(episode.end) : <span className="font-semibold italic">ongoing</span>}</div>
         <div className="text-gray-600">{eventsQuery.data?.length ?? '-'} event{(eventsQuery.data?.length ?? 0) > 1 || eventsQuery.data?.length === 0 ? 's' : ''}</div>
       </div>

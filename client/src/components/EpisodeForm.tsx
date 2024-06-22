@@ -85,6 +85,7 @@ const EpisodeForm = ({ personId, episode, onSuccess, onError }: EpisodeFormProps
     } else {
       createEpisodeMutation.mutate({ episode: episodeRecord });
     }
+    form.reset();
   }
 
   useEffect(() => {

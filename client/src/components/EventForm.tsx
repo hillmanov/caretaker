@@ -104,6 +104,7 @@ const EventForm = ({ episodeId, event, onSuccess, onError }: EventFormProps) => 
     } else {
       createEventMutation.mutate({ event: eventRecord });
     }
+    form.reset();
   }
 
   const whatFieldValue = form.watch('what');

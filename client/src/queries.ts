@@ -260,6 +260,7 @@ export const useCreateEventMutation = ({ onSuccess, onError }: EventCallBacks = 
       const event = args[0];
       queryClient.invalidateQueries({
         queryKey: ["events", event.episode],
+        exact: false,
       }); 
       queryClient.invalidateQueries({
         queryKey: ["episode", event.episode],
