@@ -19,6 +19,7 @@ import {
 import { 
   Switch
 } from "@/components/ui/switch"
+import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Calendar } from '@/components/ui/calendar'
@@ -219,6 +220,8 @@ const EpisodeForm = ({ personId, episode, onSuccess, onError }: EpisodeFormProps
           <Label htmlFor="recovered">Recovered</Label>
         </div>
 
+        
+
         {(recovered) && (
           <>
             <div className="mb-4">
@@ -270,10 +273,32 @@ const EpisodeForm = ({ personId, episode, onSuccess, onError }: EpisodeFormProps
                     </FormItem>
                   )}
                 />
+
+
+                
               </div>
             </div>
           </>
         )}
+
+        <div className="mb-4">
+          <FormField
+          control={form.control}
+          name="note"
+          render={({ field }) => (
+            <FormItem>
+
+              <div className="-mb-2">
+                <FormLabel>Note</FormLabel>
+              </div>
+                <FormControl>
+                  <Textarea className="w-full" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+          )}
+        />
+        </div>
 
         <Button type="submit">Save</Button>
       </form>

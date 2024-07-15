@@ -2,9 +2,8 @@
   auto_https disable_redirects
 }
 
-caretaker.local.com:80, caretaker.local.com, host.docker.internal:80 {
+caretaker.local.hillmanworks.com:80, caretaker.local.hillmanworks.com, host.docker.internal:80 {
   tls internal
-
 
   route {
     header * -Server
