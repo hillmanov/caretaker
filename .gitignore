@@ -6,3 +6,4 @@ pb_data
 dist
 server/caretaker
 
+.playwright-mcp/
