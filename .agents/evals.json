@@ -1,0 +1,13 @@
+[
+  {"ask": "Who's sick right now?", "tool": "caretaker_illnesses", "args": {"sickNow": true}},
+  {"ask": "When was Liam last sick, and with what?", "tool": "caretaker_illnesses", "args": {"person": "Liam"}},
+  {"ask": "How many times has Darcy been sick since 2025?", "tool": "caretaker_illnesses", "args": {"person": "Darcy", "since": "2025-01-01"}},
+  {"ask": "What happened during Millie's stomach bug?", "tool": "caretaker_illness", "args": {"person": "Millie"}},
+  {"ask": "What were Millie's temperatures when she had a fever?", "tool": "caretaker_events", "args": {"person": "Millie", "what": "temperature"}},
+  {"ask": "When did anyone last take ibuprofen?", "tool": "caretaker_events", "args": {"what": "ibuprofen"}},
+  {"ask": "What kinds of things can I log in Caretaker?", "tool": "caretaker_kinds"},
+  {"ask": "Liam has a fever, started this morning around 7:30.", "tool": "caretaker_start_illness", "args": {"person": "Liam"}},
+  {"ask": "Millie just threw up on the couch.", "tool": "caretaker_record_event", "args": {"person": "Millie"}},
+  {"ask": "Millie is better now.", "tool": "caretaker_update_illness", "args": {"person": "Millie", "better": true}},
+  {"ask": "That last Tylenol dose I logged was actually 10 ml, not 2 pills.", "tool": "caretaker_fix_event", "args": {"details": {"Amount": "10 ml"}}}
+]
