@@ -43,7 +43,7 @@ const TabsTrigger = React.forwardRef<
       justify-center
       whitespace-nowrap
       rounded-md
-      border-[1px]
+      border
       border-gray-300
       bg-gray-200
       px-3
@@ -54,17 +54,17 @@ const TabsTrigger = React.forwardRef<
       transition-all
       hover:bg-white
       hover:shadow-none
-      focus-visible:outline-none
+      focus-visible:outline-hidden
       focus-visible:ring-2
       focus-visible:ring-slate-950
       focus-visible:ring-offset-2
       disabled:pointer-events-none
       disabled:opacity-50
-      data-[state=active]:border-[1px]
+      data-[state=active]:border
       data-[state=active]:border-sky-500
       data-[state=active]:bg-sky-100
       data-[state=active]:text-sky-600
-      data-[state=active]:shadow-sm
+      data-[state=active]:shadow-xs
       dark:ring-offset-slate-950
       dark:focus-visible:ring-slate-300
       dark:data-[state=active]:bg-slate-950
@@ -84,7 +84,7 @@ const TabsContent = React.forwardRef<
     className={cn(`
       mt-2
       ring-offset-white
-      focus-visible:outline-none
+      focus-visible:outline-hidden
       focus-visible:ring-2
       focus-visible:ring-slate-950
       focus-visible:ring-offset-2

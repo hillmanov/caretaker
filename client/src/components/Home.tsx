@@ -76,7 +76,7 @@ const PersonSelector = () => {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 z-[1000000] flex h-20 w-full flex-row items-center justify-between border-t-2 border-gray-200 bg-white p-4 md:invisible">
+      <div className="fixed bottom-0 left-0 z-1000000 flex h-20 w-full flex-row items-center justify-between border-t-2 border-gray-200 bg-white p-4 md:invisible">
         {personsQuery.data?.map(person => {
           const firstInitial = person.name[0];
           return (

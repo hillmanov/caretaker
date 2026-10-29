@@ -20,7 +20,7 @@ const Switch = React.forwardRef<
       border-2
       border-transparent
       transition-colors
-      focus-visible:outline-none
+      focus-visible:outline-hidden
       focus-visible:ring-2
       focus-visible:ring-sky-950
       focus-visible:ring-offset-2

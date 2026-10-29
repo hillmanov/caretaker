@@ -43,8 +43,8 @@ const episodeSchema = z.object({
   name: z.string().min(1, { message: "You need to fill this one in!"}),
   sickness: z.string().min(1, { message: "What kind of sickness?"}),
   person: z.string().min(1, { message: "Who got sick????"}),
-  start: z.date({ required_error: "We need this!"}),
-  end: z.date({ required_error: "We need this!"}),
+  start: z.date({ error: "We need this!"}),
+  end: z.date({ error: "We need this!"}),
   note: z.string().optional(),
 });
 
@@ -183,7 +183,7 @@ const EpisodeForm = ({ personId, episode, onSuccess, onError }: EpisodeFormProps
                         mode="single"
                         selected={field.value}
                         onSelect={field.onChange}
-                        initialFocus
+                        autoFocus
                       />
                     </PopoverContent>
                   </Popover>
@@ -195,11 +195,11 @@ const EpisodeForm = ({ personId, episode, onSuccess, onError }: EpisodeFormProps
             <FormField
               control={form.control}
               name="start"
-              render={() => (
+              render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <TimePicker 
-                      date={dayjs(form.watch('start')).toDate()}
+                      date={dayjs(field.value).toDate()}
                       setDate={(date) => form.setValue('start', new Date(date || 0))}
                     />
                   </FormControl>
@@ -249,7 +249,7 @@ const EpisodeForm = ({ personId, episode, onSuccess, onError }: EpisodeFormProps
                             mode="single"
                             selected={field.value}
                             onSelect={field.onChange}
-                            initialFocus
+                            autoFocus
                           />
                         </PopoverContent>
                       </Popover>
@@ -261,11 +261,11 @@ const EpisodeForm = ({ personId, episode, onSuccess, onError }: EpisodeFormProps
                 <FormField
                   control={form.control}
                   name="end"
-                  render={() => (
+                  render={({ field }) => (
                     <FormItem>
                       <FormControl>
                         <TimePicker 
-                          date={dayjs(form.watch('end')).toDate()}
+                          date={dayjs(field.value).toDate()}
                           setDate={(date) => form.setValue('end', new Date(date || 0))}
                         />
                       </FormControl>

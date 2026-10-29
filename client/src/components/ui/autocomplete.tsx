@@ -19,18 +19,10 @@ import { cn } from '@/lib/utils';
 function useValues(originalValues: string[] | undefined) : [string[], (input: string[]) => void, string, (input: string) => void]{
   const [inputValue, _setInputValue] = useState('');
   const [values, setValues] = useState<string[]>(originalValues || []);
-  const [nextValue, setNextValue] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (nextValue !== null) {
-      _setInputValue(nextValue);
-      setNextValue(null); // Reset nextValue
-    }
-  }, [nextValue, _setInputValue]);
 
   const setInputValue = (input: string) => {
-    setValues(() => compact(uniq([...(originalValues || []), input])));
-    setNextValue(input);
+    setValues(compact(uniq([...(originalValues || []), input])));
+    _setInputValue(input);
   };
 
   return [values, setValues, inputValue, setInputValue];

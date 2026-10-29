@@ -91,7 +91,7 @@ const Event = ({ eventId, edit }: EventProps) => {
           )}
 
           {(event.data?.length?? 0) > 0 && event.note && (
-            <div className="h-1 w-full border-b-[1px] border-sky-100"></div>
+            <div className="h-1 w-full border-b border-sky-100"></div>
           )}
 
           {event.note && (
@@ -156,14 +156,14 @@ export const Episode = ({ episodeId, personId }: PersonEpisodeProps) => {
   const updateEpisodeMutation = useUpdateEpisodeMutation({ 
     onSuccess: () => {
       toast.success('Yay', {
-        className: '!text-green-700',
+        className: 'text-green-700!',
         description: `So good to see that ${personQuery.data?.name} is feeling better!`,
         position: 'bottom-center',
       });
     },
     onError: () => {
       toast.error('Crud', {
-        className: '!text-red-700',
+        className: 'text-red-700!',
         description: `Couldn't mark them as recovered for some reason`,
         position: 'bottom-center',
       });
@@ -302,20 +302,20 @@ export const Episode = ({ episodeId, personId }: PersonEpisodeProps) => {
               <DialogDescription className="text-xs italic text-gray-400">
                 Was it gross?
               </DialogDescription>
-              <div className="!mt-4">
+              <div className="mt-4!">
                 <EventForm 
                   onSuccess={() => { 
                     setShowEventForm(false);
                     navigate({ to: '/', search: { personId, episodeId }})
                     toast.success('Event saved!', {
-                      className: '!text-green-700',
+                      className: 'text-green-700!',
                       description: `Thanks for taking care of ${personQuery.data?.name}!`,
                       position: 'bottom-center',
                     });
                   }}
                   onError={() => {
                     toast.error('Error saving event.', {
-                      className: '!text-red-700',
+                      className: 'text-red-700!',
                       description: `Sorry - that didn't go through.`,
                       position: 'bottom-center',
                     });
@@ -335,19 +335,19 @@ export const Episode = ({ episodeId, personId }: PersonEpisodeProps) => {
               <DialogDescription className="text-xs italic text-gray-300">
                 What's the deal?
               </DialogDescription>
-              <div className="!mt-4">
+              <div className="mt-4!">
                 <EpisodeForm 
                   onSuccess={() => { 
                     setShowEpisodeForm(false);
                     toast.success('Episode saved!', {
-                      className: '!text-green-700',
+                      className: 'text-green-700!',
                       description: `Thanks for taking care of ${personQuery.data?.name}!`,
                       position: 'bottom-center',
                     });
                   }}
                   onError={() => {
                     toast.error('Error saving episode.', {
-                      className: '!text-red-700',
+                      className: 'text-red-700!',
                       description: `Sorry - that didn't go through.`,
                       position: 'bottom-center',
                     });

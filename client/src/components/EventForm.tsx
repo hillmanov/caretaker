@@ -1,5 +1,5 @@
-import { some, every, map, times } from 'lodash';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { some, every, map } from 'lodash';
+import { useForm, useFieldArray, useWatch } from 'react-hook-form';
 import {
   usePersons,
   useEventAutocompleteSuggestions,
@@ -49,7 +49,7 @@ const eventSchema = z.object({
   what: z.string().min(1, {
     message: "You need to say what happened!",
   }),
-  when: z.date({ required_error: "Oops. Missed this one!"}),
+  when: z.date({ error: "Oops. Missed this one!"}),
   where: z.string().min(1, { message: "Gotta be thorough here!"}),
   data: z.array(z.object({ thing: z.string().min(1, { message: "👆"}), detail: z.string().min(1, { message: "👆"})})),
   note: z.string().optional(),
@@ -107,8 +107,8 @@ const EventForm = ({ episodeId, event, onSuccess, onError }: EventFormProps) => 
     form.reset();
   }
 
-  const whatFieldValue = form.watch('what');
-  const thingsFields = form.watch(times(dataFieldsController.fields.length, (i: number) : `data.${number}.thing` => `data.${i}.thing`));
+  const whatFieldValue = useWatch({ control: form.control, name: 'what' });
+  const dataFieldValues = useWatch({ control: form.control, name: 'data' });
 
   if (some([personsQuery, autocompleteSuggestionsQuery], 'isLoading'))  {
     return (
@@ -180,7 +180,7 @@ const EventForm = ({ episodeId, event, onSuccess, onError }: EventFormProps) => 
                     <FormControl>
                       <Autocomplete 
                         placeholder="Measurement, quantity, or value..."
-                        originalValues={autocompleteSuggestionsQuery.data?.detailsByThing[whatFieldValue]?.[thingsFields?.[index]]}
+                        originalValues={autocompleteSuggestionsQuery.data?.detailsByThing[whatFieldValue]?.[dataFieldValues?.[index]?.thing]}
                         currentValue={field.value} 
                         onSelect={field.onChange} 
                       />
@@ -235,7 +235,7 @@ const EventForm = ({ episodeId, event, onSuccess, onError }: EventFormProps) => 
                         mode="single"
                         selected={field.value}
                         onSelect={field.onChange}
-                        initialFocus
+                        autoFocus
                       />
                     </PopoverContent>
                   </Popover>
@@ -247,11 +247,11 @@ const EventForm = ({ episodeId, event, onSuccess, onError }: EventFormProps) => 
             <FormField
               control={form.control}
               name="when"
-              render={() => (
+              render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <TimePicker 
-                      date={dayjs(form.watch('when')).toDate()}
+                      date={dayjs(field.value).toDate()}
                       setDate={(date) => form.setValue('when', new Date(date || 0))}
                     />
                   </FormControl>

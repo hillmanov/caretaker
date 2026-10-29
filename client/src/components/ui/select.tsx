@@ -14,7 +14,7 @@ const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrimitive.T
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(`
-      !mt-0
+      mt-0!
       flex
       h-10
       w-full
@@ -29,7 +29,7 @@ const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrimitive.T
       text-sm
       ring-offset-white
       placeholder:text-slate-500
-      focus:outline-none
+      focus:outline-hidden
       disabled:cursor-not-allowed
       disabled:opacity-50
       dark:border-slate-800
@@ -103,7 +103,7 @@ const SelectContent = React.forwardRef<React.ElementRef<typeof SelectPrimitive.C
         relative
         z-50
         max-h-96
-        min-w-[8rem]
+        min-w-32
         overflow-hidden
         rounded-md
         border
@@ -129,9 +129,9 @@ const SelectContent = React.forwardRef<React.ElementRef<typeof SelectPrimitive.C
         className={cn(
           "p-1",
           position === "popper" && `
-            h-[var(--radix-select-trigger-height)]
+            h-(--radix-select-trigger-height)
             w-full
-            min-w-[var(--radix-select-trigger-width)]`
+            min-w-(--radix-select-trigger-width)`
         )}
       >
         {children}
@@ -167,16 +167,16 @@ const SelectItem = React.forwardRef<
       cursor-default
       select-none
       items-center
-      rounded-sm
+      rounded-xs
       py-1.5
       pl-8
       pr-2
       text-sm
-      outline-none
+      outline-hidden
       focus:bg-slate-100
       focus:text-slate-900
-      data-[disabled]:pointer-events-none
-      data-[disabled]:opacity-50
+      data-disabled:pointer-events-none
+      data-disabled:opacity-50
       dark:focus:bg-slate-800
       dark:focus:text-slate-50`,
       className

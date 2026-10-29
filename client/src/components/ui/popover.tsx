@@ -34,7 +34,7 @@ const PopoverContent = React.forwardRef<React.ElementRef<typeof PopoverPrimitive
           p-4
           text-slate-950
           shadow-md
-          outline-none
+          outline-hidden
           dark:border-slate-800
           dark:bg-slate-950
           dark:text-slate-50

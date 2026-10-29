@@ -49,10 +49,10 @@ const Episode = ({ episode }: { episode: EpisodeResponse }) => {
         episodeId: episode.id,
         personId: episode.person,
       }}
-      className="group max-w-[500px] rounded-xl bg-white shadow hover:bg-sky-50"
+      className="group max-w-[500px] rounded-xl bg-white shadow-sm hover:bg-sky-50"
     >
       <div 
-        className="group flex flex-row gap-6 rounded px-4 py-4 shadow"
+        className="group flex flex-row gap-6 rounded-sm px-4 py-4 shadow-sm"
         onMouseEnter={() => {
           queryClient.prefetchQuery(eventsQueryOptions({ episodeId: episode.id, what: '' }));
           queryClient.prefetchQuery(episodeWhatsQueryOptions(episode.id));
@@ -71,7 +71,7 @@ const Episode = ({ episode }: { episode: EpisodeResponse }) => {
         </div>
       </div>
 
-      <div className={cn("rounded-b-xl bg-gray-100 p-4 text-xs text-gray-600 shadow", { "text-red-700": !episode.end, "text-green-700": episode.end })}>
+      <div className={cn("rounded-b-xl bg-gray-100 p-4 text-xs text-gray-600 shadow-sm", { "text-red-700": !episode.end, "text-green-700": episode.end })}>
         <div>{prettyDate(episode.start)} - {episode.end ? prettyDate(episode.end) : <span className="font-semibold italic">ongoing</span>}</div>
         <div className="text-gray-600">{eventsQuery.data?.length ?? '-'} event{(eventsQuery.data?.length ?? 0) > 1 || eventsQuery.data?.length === 0 ? 's' : ''}</div>
       </div>
@@ -145,7 +145,7 @@ export const Episodes = ({ personId }: EpisodesProps) => {
             <DialogDescription>
               Let's start taking care of {personId ? <PersonName personId={personId} /> : 'them'}!
             </DialogDescription>
-            <div className="!mt-4">
+            <div className="mt-4!">
               <EpisodeForm 
                 onSuccess={(record: EpisodeResponse) => { 
                   setShowCreateEpisodeForm(false);
